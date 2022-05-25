@@ -97,3 +97,15 @@ export.addToCart =function (product, quantity) {
 
     //import
     const {addToCart} = require('./shoppingCart.js')//require not defined in browser but defined in nodejs
+
+//COMMAND LINE
+//ls - shows contents of current folder
+//cd - change directory
+//../.. - move up 2 levels
+//clear - clear the console
+//mkdir foldername - create a new folder
+//touch index.html - create index.html file and we can add multiple files just writing after each other
+//rm index.html - deleting index.html
+// mv script2.js ../ - moving script2.js to in to the parent folder
+//rmdir TEST - remove (just) empty folder
+// rm -R TEST -  remove any directory
