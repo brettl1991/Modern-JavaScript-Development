@@ -38,48 +38,62 @@ console.log('Importing module');
 
 //imports are live connctions to export, so not copies of exports
 //export cart array
-import add, { cart } from './shoppingCart.js';
-add('pizza', 2); //2 pizza added to cart
-add('bread', 5); //5 bread added to cart
-add('apples', 4); //4 bread added to cart
+// import add, { cart } from './shoppingCart.js';
+// add('pizza', 2); //2 pizza added to cart
+// add('bread', 5); //5 bread added to cart
+// add('apples', 4); //4 bread added to cart
 
-console.log(cart); //(3) [{…}, {…}, {…}] we have this array with objects we added above:
-// 0: {product: 'pizza', quantity: 2}
-// 1: {product: 'bread', quantity: 5}
-// 2: {product: 'apples', quantity: 4}
+// console.log(cart); //(3) [{…}, {…}, {…}] we have this array with objects we added above:
+// // 0: {product: 'pizza', quantity: 2}
+// // 1: {product: 'bread', quantity: 5}
+// // 2: {product: 'apples', quantity: 4}
 
-//IMPLEMENTATION OF THE MODULE PATTERN
-//create an iffy (just retirn once)
-const ShoppingCart2 = (function () {
-  const cart = [];
-  const shippingCost = 10;
-  const totalPrice = 237;
-  const totalQuantity = 23;
+// //IMPLEMENTATION OF THE MODULE PATTERN
+// //create an iffy (just return once)
+// const ShoppingCart2 = (function () {
+//   const cart = [];
+//   const shippingCost = 10;
+//   const totalPrice = 237;
+//   const totalQuantity = 23;
 
-  const addToCart = function (product, quantity) {
-    cart.push({ product, quantity });
-    console.log(
-      `${quantity} ${product} added to cart (shipping cost is ${shippingCost})`
-    );
-  };
+//   const addToCart = function (product, quantity) {
+//     cart.push({ product, quantity });
+//     console.log(
+//       `${quantity} ${product} added to cart (shipping cost is ${shippingCost})`
+//     );
+//   };
 
-  const orderStock = function (product, quantity) {
-    console.log(`${quantity} ${product} ordered from supplier`);
-  };
+//   const orderStock = function (product, quantity) {
+//     console.log(`${quantity} ${product} ordered from supplier`);
+//   };
 
-  //return a public API
-  return {
-    addToCart,
-    cart,
-    totalPrice,
-    totalQuantity,
-  };
-})();
+//   //return a public API
+//   return {
+//     addToCart,
+//     cart,
+//     totalPrice,
+//     totalQuantity,
+//   };
+// })();
 
-ShoppingCart2.addToCart('apple', 4);
-ShoppingCart2.addToCart('pizza', 2);
-console.log(ShoppingCart2); //{cart: Array(2), totalPrice: 237, totalQuantity: 23, addToCart: ƒ}
-console.log(ShoppingCart2.shippingCost); //undefined
+// ShoppingCart2.addToCart('apple', 4);
+// ShoppingCart2.addToCart('pizza', 2);
+// console.log(ShoppingCart2); //{cart: Array(2), totalPrice: 237, totalQuantity: 23, addToCart: ƒ}
+// console.log(ShoppingCart2.shippingCost); //undefined
 
 //these above works because of closure (allow a func to have access to all variables which present on it's birthplace)
 //the problem with module patterns is if we wanted 1 module per file we need to create different scripts and link them to html file
+
+//COMMON JS MODULES (NOT NATIVE ES6 MODULES)
+//exist in nodjs as well, nodejs: is the way of running js on a webserver outseide of the browser
+
+//export
+export.addToCart =function (product, quantity) {
+        cart.push({ product, quantity });
+        console.log(
+          `${quantity} ${product} added to cart (shipping cost is ${shippingCost})`
+        );
+    }; //it wont work in browser but will work in nodejs
+
+    //import
+    const {addToCart} = require('./shoppingCart.js')//require not defined in browser but defined in nodejs
