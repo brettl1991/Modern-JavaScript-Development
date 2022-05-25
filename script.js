@@ -8,13 +8,13 @@
 //Modules are stored in files, 1 module per file. Top-level variables private to modules by default. Only way that an outside module can have access to a value which is inside of a module is by exporting that value. In scripts they are global. Modules are executing always in strict mode while scripts in "sloppy" mode. In modules this keyword always undefined at the top level, while in scripts it points at the window object.In modules we can export and import just on the top level while in scripts it is impossible. All imports are hoisted. In modules HTML linking: <script type="module">. File downloading in modules happens in an async way, while in scripts files downloaded in a blocking sync way unless we using async or defer attributes on the script tag. Modules are imported synchronously thanks to top-level imports, which make imports known before execution. This makes bundling and dead code elimination possible. Import is just a reference of an exported value, so not copied. So when the value changes in the exporting module, than the same value also changes in the importing module.
 
 //Exporting and Importing in ES6 modules
-//import a module without import a value
+
 //importing module
 //we can also change here their names with as
 // import { addToCart, totalPrice as price, tq } from './shoppingCart.js';
 console.log('Importing module');
 
-//this will be the order always as imported modules hoisted to the to always
+//this will be the order always as imported modules hoisted to the top always
 //Exporting module
 //Importing module
 
