@@ -38,12 +38,12 @@
 
 //imports are live connctions to export, so not copies of exports
 //export cart array
-// import add, { cart } from './shoppingCart.js';
-// add('pizza', 2); //2 pizza added to cart
-// add('bread', 5); //5 bread added to cart
-// add('apples', 4); //4 bread added to cart
+import add, { cart } from './shoppingCart.js';
+add('pizza', 2); //2 pizza added to cart
+add('bread', 5); //5 bread added to cart
+add('apples', 4); //4 bread added to cart
 
-// console.log(cart); //(3) [{…}, {…}, {…}] we have this array with objects we added above:
+console.log(cart); //(3) [{…}, {…}, {…}] we have this array with objects we added above:
 // // 0: {product: 'pizza', quantity: 2}
 // // 1: {product: 'bread', quantity: 5}
 // // 2: {product: 'apples', quantity: 4}
@@ -120,7 +120,7 @@
 
 //install most popular js library lodash: collection of useful functions
 //we need cloneDeep.js from the library: this is a default export
-import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
+// import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
 //created a deeply nested object
 const state = {
   cart: [
@@ -140,4 +140,31 @@ console.log(stateClone); //become loggedIn false
 const stateDeepClone = cloneDeep(state);
 console.log(stateDeepClone); //will be cloned
 
-//if you want to move your project to an other computer or share it with an other developer or check with git version controle: in all these situation you never EVER include the node_modules!!!!! so we can delete the modules folder than type - npm i - in the terminal and we get back
+//if you want to move your project to an other computer or share it with an other developer or check with git version controle: in all these situation you never EVER include the node_modules!!!!! so we can delete the modules folder than type - npm i - in the terminal and we get back or .gitignore
+
+//BUILDING WITH PARCEL AND NPM SCRIPTS
+// Parcel is the module bundler or Webpack in react world
+
+//to install:        npm i parcel --save-dev
+// a dev dependency has been created in package.json, to use parcel we can use: npx: npx parcel index.html (if error happen use sudo nmp i parcel, if this still does not work install teh exact version of parcel: npm uninstall parcel than npm i parcel@1.12.4, )
+//  or use: nmp scripts
+
+//the goal of using parcel to bundle script, cloneDeep.js and shoppingCart.js
+//dist folder has been created which we will send for production
+//we parcel we can implement this: hot module replacement: whenever we change the modules, then trigger the rebuild, and that modified bundle automatically get injected in the borwser without triggering the whole page reload
+if (module.hot) {
+  module.hot.accept();
+}
+
+//in module bundler no need to specify a path to any module like above with cloneDeep instead we just want to include the loadash library:
+import cloneDeep from 'lodash-es';
+
+//using npm scripts: by creating a new script i package.json by scripts: that is mainly how we do it in development
+//parcel index.html
+//than type in the console:
+//npm run start
+
+//final bundle: adding other script (build) to package.json
+
+//we can also intall packages globally but better to install locally like we did it before
+//npm i parcel -g
