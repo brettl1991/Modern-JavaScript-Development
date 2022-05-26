@@ -12,7 +12,7 @@
 //importing module
 //we can also change here their names with as
 // import { addToCart, totalPrice as price, tq } from './shoppingCart.js';
-console.log('Importing module');
+// console.log('Importing module');
 
 //this will be the order always as imported modules hoisted to the top always
 //Exporting module
@@ -88,17 +88,17 @@ console.log('Importing module');
 //exist in nodjs as well, nodejs: is the way of running js on a webserver outseide of the browser
 
 //export
-export.addToCart =function (product, quantity) {
-        cart.push({ product, quantity });
-        console.log(
-          `${quantity} ${product} added to cart (shipping cost is ${shippingCost})`
-        );
-    }; //it wont work in browser but will work in nodejs
+// export.addToCart =function (product, quantity) {
+//         cart.push({ product, quantity });
+//         console.log(
+//           `${quantity} ${product} added to cart (shipping cost is ${shippingCost})`
+//         );
+//     }; //it wont work in browser but will work in nodejs
 
-    //import
-    const {addToCart} = require('./shoppingCart.js')//require not defined in browser but defined in nodejs
+//     //import
+//     const {addToCart} = require('./shoppingCart.js')//require not defined in browser but defined in nodejs
 
-//COMMAND LINE
+// //COMMAND LINE
 //ls - shows contents of current folder
 //cd - change directory
 //../.. - move up 2 levels
@@ -109,3 +109,35 @@ export.addToCart =function (product, quantity) {
 // mv script2.js ../ - moving script2.js to in to the parent folder
 //rmdir TEST - remove (just) empty folder
 // rm -R TEST -  remove any directory
+
+//NPM- NODE PACKAGE MANAGER
+//both a software on our computer and a package repository
+//npm -v            with this we can check if it is installed and which version is on our computer
+// npm init         with this we initialising it and will ask couple of questions, we just keep hit enter and will be creted a {package.json} file: this file stores the entire configuration of our file
+
+//we installing the leaflet library but this time using npm not html script tags: npm install leaflet    npm to call than install or i in short version of install than library name: with this we got leaflet current version in package.json file, we got node_modules folder which basically the code of the leaflet libraray
+//if we want to use this library we need module bundler, without it we can not directly import to our code
+
+//install most popular js library lodash: collection of useful functions
+//we need cloneDeep.js from the library: this is a default export
+import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
+//created a deeply nested object
+const state = {
+  cart: [
+    { product: 'bread', quantity: 5 },
+    { product: 'pizza', quantity: 5 },
+  ],
+  user: { loggedIn: true },
+};
+
+//copy of an object
+const stateClone = Object.assign({}, state);
+console.log(stateClone); //get back same nested obj above
+state.user.loggedIn = false;
+console.log(stateClone); //become loggedIn false
+
+// instead use loadesh function
+const stateDeepClone = cloneDeep(state);
+console.log(stateDeepClone); //will be cloned
+
+//if you want to move your project to an other computer or share it with an other developer or check with git version controle: in all these situation you never EVER include the node_modules!!!!! so we can delete the modules folder than type - npm i - in the terminal and we get back
