@@ -168,3 +168,40 @@ import cloneDeep from 'lodash-es';
 
 //we can also intall packages globally but better to install locally like we did it before
 //npm i parcel -g
+
+//CONFIGURING BABEL AND POLYFILLING
+//we want our application to work for everyone, even for windowx xp users as well
+//Babel transfyling our code to ES5: Babel works with plugins and presets that both can be configured
+//basically parcel doing us to convert our code to ES5
+
+class Person {
+  greeting = 'Hey';
+  constructor(name) {
+    this.name = name;
+    console.log(`${this.greeting}, ${this.name}`);
+  }
+}
+
+const jonas = new Person('Jonas'); //Hey, Jonas
+
+console.log('Jonas' ?? null); //Jonas
+
+//find products in a cart that is added more than once
+console.log(cart.find(el => el.quantity >= 2)); //{product: 'pizza', quantity: 2} find method has not been converted to ES5
+//same true for promises
+Promise.resolve('TEST').then(x => console.log(x)); //TEST
+
+//The reason Babel just only can transpyle js syntax, so new features like promise or all the array method can not be converted
+// so these new features we have to polyfill them
+//we using for this a library
+
+import 'core-js/stable';
+//npm i core-js
+//so with plyfill the code in other js script still the same (find and promise), it does recreate the find func and make it available in this budle, so the code can use it, so if we search for array.prototype where all the array method were put we can see Babel converted it
+//this library polyfill everything, even that we dont use, we can also just cherry-pick what we want it to be converted but will reduce the bundle size:
+// import 'core-js/stable/array/find';
+// import 'core-js/stable/promise';
+
+//we always need to install: this for polyfilling async functions
+//npm i regenerator-runtime
+import 'regenerator-runtime/runtime';
