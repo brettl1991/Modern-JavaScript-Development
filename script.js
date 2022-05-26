@@ -146,12 +146,12 @@ console.log(stateDeepClone); //will be cloned
 // Parcel is the module bundler or Webpack in react world
 
 //to install:        npm i parcel --save-dev
-// a dev dependency has been created in package.json, to use parcel we can use: npx: npx parcel index.html (if error happen use sudo nmp i parcel, if this still does not work install teh exact version of parcel: npm uninstall parcel than npm i parcel@1.12.4, )
+// a dev dependency has been created in package.json, to use parcel we can use: npx: npx parcel index.html (if error happen use sudo nmp i parcel, if this still does not work install the exact version of parcel: npm uninstall parcel than npm i parcel@1.12.4, )
 //  or use: nmp scripts
 
 //the goal of using parcel to bundle script, cloneDeep.js and shoppingCart.js
 //dist folder has been created which we will send for production
-//we parcel we can implement this: hot module replacement: whenever we change the modules, then trigger the rebuild, and that modified bundle automatically get injected in the borwser without triggering the whole page reload
+//with parcel we can implement this: hot module replacement: whenever we change the modules, then trigger the rebuild, and that modified bundle automatically get injected in the borwser without triggering the whole page reload
 if (module.hot) {
   module.hot.accept();
 }
@@ -159,7 +159,7 @@ if (module.hot) {
 //in module bundler no need to specify a path to any module like above with cloneDeep instead we just want to include the loadash library:
 import cloneDeep from 'lodash-es';
 
-//using npm scripts: by creating a new script i package.json by scripts: that is mainly how we do it in development
+//using npm scripts: by creating a new script in package.json by scripts: that is mainly how we do it in development
 //parcel index.html
 //than type in the console:
 //npm run start
