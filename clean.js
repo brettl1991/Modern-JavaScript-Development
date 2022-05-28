@@ -81,7 +81,7 @@ const newBudget3 = addExpense(newBudget2, spendingLimits, 200, 'Stuff', 'Jay'); 
 // };
 // };
 
-//transform to an arrow func the above, basically to pure func
+//transform to an arrow func the above, basically to pure function
 
 const checkExpenses = (state, limits) =>
   state.map(
