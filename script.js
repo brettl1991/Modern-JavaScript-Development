@@ -85,7 +85,7 @@ console.log(cart); //(3) [{…}, {…}, {…}] we have this array with objects 
 //the problem with module patterns is if we wanted 1 module per file we need to create different scripts and link them to html file
 
 //COMMON JS MODULES (NOT NATIVE ES6 MODULES)
-//exist in nodjs as well, nodejs: is the way of running js on a webserver outseide of the browser
+//exist in nodjs as well, nodejs: is the way of running js on a webserver outside of the browser
 
 //export
 // export.addToCart =function (product, quantity) {
@@ -104,24 +104,24 @@ console.log(cart); //(3) [{…}, {…}, {…}] we have this array with objects 
 //../.. - move up 2 levels
 //clear - clear the console
 //mkdir foldername - create a new folder
-//touch index.html - create index.html file and we can add multiple files just writing after each other
+//touch index.html - create index.html file and we can add multiple files just writing one after an other
 //rm index.html - deleting index.html
-// mv script2.js ../ - moving script2.js to in to the parent folder
-//rmdir TEST - remove (just) empty folder
+// mv script2.js ../ - moving script2.js in to the parent folder
+//rmdir TEST - remove (TEST) empty folder
 // rm -R TEST -  remove any directory
 
 //NPM- NODE PACKAGE MANAGER
 //both a software on our computer and a package repository
 //npm -v            with this we can check if it is installed and which version is on our computer
-// npm init         with this we initialising it and will ask couple of questions, we just keep hit enter and will be creted a {package.json} file: this file stores the entire configuration of our file
+// npm init         with this we initialising it and will ask couple of questions, we just need to keep hit enter and will be creted a {package.json} file: this file stores the entire configuration of our file
 
 //we installing the leaflet library but this time using npm not html script tags: npm install leaflet    npm to call than install or i in short version of install than library name: with this we got leaflet current version in package.json file, we got node_modules folder which basically the code of the leaflet libraray
 //if we want to use this library we need module bundler, without it we can not directly import to our code
 
-//install most popular js library lodash: collection of useful functions
+//install most popular js library: lodash: collection of useful functions
 //we need cloneDeep.js from the library: this is a default export
 // import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
-//created a deeply nested object
+//we created a deeply nested object
 const state = {
   cart: [
     { product: 'bread', quantity: 5 },
@@ -140,7 +140,7 @@ console.log(stateClone); //become loggedIn false
 const stateDeepClone = cloneDeep(state);
 console.log(stateDeepClone); //will be cloned
 
-//if you want to move your project to an other computer or share it with an other developer or check with git version controle: in all these situation you never EVER include the node_modules!!!!! so we can delete the modules folder than type - npm i - in the terminal and we get back or .gitignore
+//if you want to move your project to an other computer or share it with an other developer or check with git version controle: in all these cases you never EVER include the node_modules!!!!! so we can delete the modules folder than type - npm i - in the terminal and we get back or .gitignore
 
 //BUILDING WITH PARCEL AND NPM SCRIPTS
 // Parcel is the module bundler or Webpack in react world
@@ -149,17 +149,17 @@ console.log(stateDeepClone); //will be cloned
 // a dev dependency has been created in package.json, to use parcel we can use: npx: npx parcel index.html (if error happen use sudo nmp i parcel, if this still does not work install the exact version of parcel: npm uninstall parcel than npm i parcel@1.12.4, )
 //  or use: nmp scripts
 
-//the goal of using parcel to bundle script, cloneDeep.js and shoppingCart.js
+//the goal of using parcel to bundle scripts: in this file script, cloneDeep.js and shoppingCart.js
 //dist folder has been created which we will send for production
 //with parcel we can implement this: hot module replacement: whenever we change the modules, then trigger the rebuild, and that modified bundle automatically get injected in the borwser without triggering the whole page reload
 if (module.hot) {
   module.hot.accept();
 }
 
-//in module bundler no need to specify a path to any module like above with cloneDeep instead we just want to include the loadash library:
+//in module bundler we dont need to specify a path to any module like above with cloneDeep instead we just want to include the loadash library:
 import cloneDeep from 'lodash-es';
 
-//using npm scripts: by creating a new script in package.json by scripts: that is mainly how we do it in development
+//using npm scripts: basically when we are creating a new script in package.json by scripts: that is mainly how we do it in development
 //parcel index.html
 //than type in the console:
 //npm run start
@@ -191,13 +191,13 @@ console.log(cart.find(el => el.quantity >= 2)); //{product: 'pizza', quantity: 2
 //same true for promises
 Promise.resolve('TEST').then(x => console.log(x)); //TEST
 
-//The reason Babel just only can transpyle js syntax, so new features like promise or all the array method can not be converted
+//The reason Babel just only can transpyle js syntax, so new features like promises or all the array methods can not be converted
 // so these new features we have to polyfill them
 //we using for this a library
 
 import 'core-js/stable';
 //npm i core-js
-//so with plyfill the code in other js script still the same (find and promise), it does recreate the find func and make it available in this budle, so the code can use it, so if we search for array.prototype where all the array method were put we can see Babel converted it
+//so with plyfill the code in other js script still the same (find and promise), it does recreate the find func and make it available in this budle, so the code can use it, so if we search for array.prototype where all the array method were put togeter we can see Babel converted it
 //this library polyfill everything, even that we dont use, we can also just cherry-pick what we want it to be converted but will reduce the bundle size:
 // import 'core-js/stable/array/find';
 // import 'core-js/stable/promise';
